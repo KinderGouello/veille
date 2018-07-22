@@ -1,0 +1,66 @@
+.tweet {
+  margin: 0 auto;
+  border: 1px solid #eee;
+  padding: 15px 15px;
+  max-width: 500px;
+  background: white;
+}
+
+.tweet--user:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.tweet--user-avatar {
+  border-radius: 5px;
+  float: left;
+  margin-right: 10px;
+}
+.tweet--user-name {
+  font-weight: bold;
+  padding-top: 9px;
+}
+.tweet--user-name span {
+  font-weight: normal;
+  color: #999;
+  font-size: 0.8em;
+  display: block;
+}
+.tweet--body {
+  margin: 20px 0 5px;
+  font-size: 1.5em;
+}
+.tweet--time {
+  font-weight: normal;
+  color: #999;
+  font-size: 0.8em;
+}
+.tweet--actions {
+  margin-top: 20px;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+.tweet--actions [class*="fa-"] {
+  margin-left: 7px;
+  margin-right: 7px;
+  color: #999;
+}
+.tweet--actions [class*="fa-"].fa-heart {
+  color: #DD2E44;
+}
+
+.tweet--actions [class*="fa-"] {
+  color: #4A913C;
+}
+
+.tweet--actions [class*="fa-"]:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.tweet--actions span {
+  color: #999;
+  font-size: 0.8em;
+  text-transform: uppercase;
+}

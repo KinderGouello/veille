@@ -1,0 +1,68 @@
+.card {
+  margin: 30px auto 0;
+  background-color: #fff;
+  box-shadow: 0 10px 30px 0 #c9cdd0;
+  border-radius: 20px;
+  width: 345px;
+  height: 505px;
+  box-sizing: border-box;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-information {
+  width: 100%;
+  align-self: center;
+}
+
+.card-information__title {
+  font-size: 22px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2.4px;
+  color: #6c778e;
+  padding-bottom: 20px;
+}
+
+.card-information__text {
+  font-size: 18px;
+  color: #6c778e;
+}
+
+.card-actions {
+  align-self: flex-end;
+  width: 100%;
+}
+
+.card-action {
+  display: inline-block;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+}
+
+.card-action span {
+  display: inline-block;
+  padding-top: 10px;
+}
+
+.card-add {
+  background-color: #84DCC6;
+}
+
+.card .medium {
+  border: none;
+}
+
+.card .tweet {
+  border: none;
+}
+
+.card .tweet--actions {
+  border: none;
+}

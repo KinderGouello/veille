@@ -1,0 +1,66 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+body {
+  font-family: Sans-Serif;
+  background: #F5F8FA;
+}
+
+.medium {
+  margin: 0 auto;
+  border: 1px solid #eee;
+  padding: 15px 15px;
+  max-width: 500px;
+  background: #fff;
+}
+
+.medium .-article {
+  display: block;
+  text-decoration: none;
+  font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif!important;
+}
+
+.medium .-author-picture {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  border-radius: 100%;
+}
+
+.medium .-author-name {
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(0,0,0,.84);
+  vertical-align: middle;
+}
+
+.medium .-title {
+  font-size: 24px;
+  color: rgba(0,0,0,.84);
+  margin: 15px 0;
+}
+
+.medium .-claps-icon {
+  vertical-align: middle;
+  fill: #03a87c;
+  color: #34e79a;
+}
+
+.medium .-claps {
+  vertical-align: middle;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(0,0,0,.54);
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.medium .-readingTime {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(0,0,0,.54);
+}
