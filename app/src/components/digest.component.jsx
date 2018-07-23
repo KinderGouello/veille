@@ -6,9 +6,10 @@ import { fetchItems, addItem, nextItem, prevItem } from '../actions/digest.actio
 import { Loader } from 'semantic-ui-react';
 import TweetFromItem from './tweet-from-item.component';
 import MediumFromItem from './medium-from-item.component';
-import AddButton from './Digest/add-button.component';
+import DigestCard from './Digest/digest-card.component';
+import NavButton from './Digest/nav-button.component';
 
-import './styles/digest-card.css';
+import './styles/digest.css';
 import 'semantic-ui-css/semantic.min.css';
 
 const cards = {
@@ -25,52 +26,52 @@ class Digest extends Component {
     const {
       digestId,
       currentItem,
-      itemLoading,
+      isFirstItem,
+      isLastItem,
       onAddItem,
       onNextItem,
       onPrevItem,
     } = this.props;
 
-    if (itemLoading) {
-      return (
-        <div className="card"><Loader active /></div>
-      );
-    }
+    const Component = (currentItem) ? cards[currentItem.type] : false;
 
-    if (currentItem !== undefined) {
-      const Component = cards[currentItem.type];
-      // const itemSaved = currentItem.saved;
-
-      return (
-        <div className="card">
-          <div className="card-information">{<Component item={currentItem} />}</div>
-          <div className="card-actions">
-            <div onClick={() => onPrevItem()}>Prev</div>
-            <div onClick={() => onNextItem()}>Next</div>
-            <AddButton onClick={() => onAddItem(digestId, currentItem._id)} saved={itemSaved} />
-          </div>
+    return (
+      <div className="digest">
+        <div className="digest-left"><NavButton onClick={!isFirstItem && (() => onPrevItem())} icon={!isFirstItem && "arrow-left"} /></div>
+        <div className="digest-center">
+          {isLastItem ? (
+            <DigestCard
+              body={<p style={{textAlign: 'center'}}>Finished !</p>}
+              onClick=''
+              isItem={false}
+            />
+          ) : (!Component ? (
+            <DigestCard
+              body={<Loader active />}
+              onClick=''
+              isItem={false}
+            />
+          ) : ( 
+            <DigestCard
+              body={<Component item={currentItem} />}
+              onClick={() => onAddItem(digestId, currentItem._id)}
+              isItem={true}
+            />
+          ))}
         </div>
-      )
-    }
-
-    return (<div className="card"></div>);
+        <div className="digest-right"><NavButton onClick={!isLastItem && (() => onNextItem())} icon={!isLastItem && "arrow-right"} /></div>
+      </div>
+    )
   }
 }
 
-const mapStateToProps = state => {
-  console.log({
-    digestId: state.digest._id,
-    currentItem: (state.digest.items) ? state.digest.items[state.digest.currentItem] : undefined,
-    itemLoading: state.digest.itemLoading,
-  });
-  
-  return {
-    digestId: state.digest._id,
-    currentItem: (state.digest.items) ? state.digest.items[state.digest.currentItem] : undefined,
-    itemLoading: state.digest.itemLoading,
-  };
+const mapStateToProps = state => ({
+  digestId: state.digest._id,
+  isFirstItem: state.digest.currentItem === 0,
+  isLastItem: (state.digest.items !== undefined) ? state.digest.currentItem === state.digest.items.length : false,
+  currentItem: (state.digest.items) ? state.digest.items[state.digest.currentItem] : undefined,
   // actionLoading: state.digest.actionLoading,
-};
+});
 const mapDispatchToProps = dispatch => bindActionCreators({
   onAddItem: addItem,
   onNextItem: nextItem,

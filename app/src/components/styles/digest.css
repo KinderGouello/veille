@@ -1,0 +1,13 @@
+.digest{
+  display: flex;
+  flex-direction: row;
+}
+
+.digest-left,
+.digest-center,
+.digest-right{
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
