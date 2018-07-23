@@ -4,7 +4,6 @@ const mediumDigest = require('./digests/medium');
 const twitterDigest = require('./digests/twitter');
 const db = require('./lib/db');
 const Digest = require('./model/digest');
-const Item = require('./model/item');
 
 (async () => {
   const since = moment().subtract(1, 'days');
@@ -29,4 +28,6 @@ const Item = require('./model/item');
   });
   const save = await digest.save();
   console.log(save);
+  
+  process.exit();
 })();

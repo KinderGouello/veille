@@ -24,7 +24,7 @@ class Digest extends Component {
 
   render() {
     const {
-      digestId,
+      digest,
       currentItem,
       isFirstItem,
       isLastItem,
@@ -36,37 +36,42 @@ class Digest extends Component {
     const Component = (currentItem) ? cards[currentItem.type] : false;
 
     return (
-      <div className="digest">
-        <div className="digest-left"><NavButton onClick={!isFirstItem && (() => onPrevItem())} icon={!isFirstItem && "arrow-left"} /></div>
-        <div className="digest-center">
-          {isLastItem ? (
-            <DigestCard
-              body={<p style={{textAlign: 'center'}}>Finished !</p>}
-              onClick=''
-              isItem={false}
-            />
-          ) : (!Component ? (
-            <DigestCard
-              body={<Loader active />}
-              onClick=''
-              isItem={false}
-            />
-          ) : ( 
-            <DigestCard
-              body={<Component item={currentItem} />}
-              onClick={() => onAddItem(digestId, currentItem._id)}
-              isItem={true}
-            />
-          ))}
+      <div>
+        <div>
+          <h1>Digest du {digest.date}</h1>
         </div>
-        <div className="digest-right"><NavButton onClick={!isLastItem && (() => onNextItem())} icon={!isLastItem && "arrow-right"} /></div>
+        <div className="digest">
+          <div className="digest-left"><NavButton onClick={!isFirstItem && (() => onPrevItem())} icon={!isFirstItem && "arrow-left"} /></div>
+          <div className="digest-center">
+            {isLastItem ? (
+              <DigestCard
+                body={<p style={{textAlign: 'center'}}>Finished !</p>}
+                onClick={undefined}
+                isItem={false}
+              />
+            ) : (!Component ? (
+              <DigestCard
+                body={<Loader active />}
+                onClick={undefined}
+                isItem={false}
+              />
+            ) : ( 
+              <DigestCard
+                body={<Component item={currentItem} />}
+                  onClick={() => onAddItem(digest.id, currentItem._id)}
+                isItem={true}
+              />
+            ))}
+          </div>
+          <div className="digest-right"><NavButton onClick={!isLastItem && (() => onNextItem())} icon={!isLastItem && "arrow-right"} /></div>
+        </div>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  digestId: state.digest._id,
+  digest: state.digest,
   isFirstItem: state.digest.currentItem === 0,
   isLastItem: (state.digest.items !== undefined) ? state.digest.currentItem === state.digest.items.length : false,
   currentItem: (state.digest.items) ? state.digest.items[state.digest.currentItem] : undefined,

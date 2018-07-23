@@ -7,6 +7,7 @@ module.exports = winston.createLogger({
     winston.format.prettyPrint(),
   ),
   transports: [
+    new winston.transports.File({ filename: './logs/debug.log', level: 'debug' }),
     new winston.transports.File({ filename: './logs/combined.log' }),
     new winston.transports.File({ filename: './logs/error.log', level: 'error' }),
   ],

@@ -1,0 +1,8 @@
+.digest-nav-button{
+  cursor: pointer;
+}
+
+.digest-nav-button.disabled{
+  cursor: auto;
+  color: #fff;
+}

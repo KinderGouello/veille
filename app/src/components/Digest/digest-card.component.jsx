@@ -9,7 +9,7 @@ const DigestCard = ({ body, onClick, isItem }) => {
       <div className="card-information">{body}</div>
       {isItem &&
         <div className="card-actions">
-          <AddButton onClick={onClick} saved={body.saved} />
+        <AddButton onClick={onClick} saved={(body.props.item) ? body.props.item.saved : false} />
         </div>
       }
     </div>

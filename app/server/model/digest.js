@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Item = require('./item');
+const toRead = require('./to-read');
 const R = require('ramda');
 
 const Digest = mongoose.model('Digest', mongoose.Schema({
@@ -30,11 +31,12 @@ module.exports = {
   addItem: async (digestId, itemId) => {
     const digest = await Digest.findById(digestId).exec();
     const item = digest.items.id(itemId);
+    item.saved = true;
 
-    return digest;
+    R.update(R.propEq('id', itemId))(item)(digest.items);
+    await toRead.add(item);
 
-    // digest.items = R.reject(R.propEq('id', itemId), digest.items);
-    // return digest.save();
+    return digest.save();
   },
   save: (digest) => digest.save(),
 };
