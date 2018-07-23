@@ -55,6 +55,11 @@
   background-color: #84DCC6;
 }
 
+.card-add-disabled {
+  background-color: #6c778e;
+  cursor: auto;
+}
+
 .card .medium {
   border: none;
 }

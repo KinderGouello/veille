@@ -6,6 +6,7 @@ import { fetchItems, addItem, nextItem, prevItem } from '../actions/digest.actio
 import { Loader } from 'semantic-ui-react';
 import TweetFromItem from './tweet-from-item.component';
 import MediumFromItem from './medium-from-item.component';
+import AddButton from './Digest/add-button.component';
 
 import './styles/digest-card.css';
 import 'semantic-ui-css/semantic.min.css';
@@ -38,6 +39,7 @@ class Digest extends Component {
 
     if (currentItem !== undefined) {
       const Component = cards[currentItem.type];
+      // const itemSaved = currentItem.saved;
 
       return (
         <div className="card">
@@ -45,11 +47,7 @@ class Digest extends Component {
           <div className="card-actions">
             <div onClick={() => onPrevItem()}>Prev</div>
             <div onClick={() => onNextItem()}>Next</div>
-            <div className="card-action card-add" onClick={() => onAddItem(digestId, currentItem._id)}>
-              <span>
-                <i className="fa fa-check fa-2x"></i>
-              </span>
-            </div>
+            <AddButton onClick={() => onAddItem(digestId, currentItem._id)} saved={itemSaved} />
           </div>
         </div>
       )

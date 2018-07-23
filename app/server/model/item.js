@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const itemSchema = mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    // required: true,
   },
   url: {
     type: String,
@@ -18,6 +18,14 @@ const itemSchema = mongoose.Schema({
     type: String,
     enum: ['article', 'tweet', 'medium'],
     required: true,
+  },
+  read: {
+    type: Boolean,
+    default: false,
+  },
+  saved: {
+    type: Boolean,
+    default: false,
   },
 });
 const Item = mongoose.model('Item', itemSchema);
