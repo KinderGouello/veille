@@ -23,5 +23,5 @@ run-server: start
 	$(CMD_DOCKER_COMPOSE) exec server npm start
 
 deploy-app:
-	$(shell git push heroku-server master)
-	$(shell git push heroku-client master)
+	$(shell git push heroku-server master --force-with-lease)
+	$(shell git push heroku-client master --force-with-lease)

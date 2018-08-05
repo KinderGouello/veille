@@ -11,8 +11,8 @@ import CustomLayout from './CustomLayout';
 
 const customRoutes = [
   <Route exact path="/digest" component={Digest} noLayout />,
-]
-const dataProvider = jsonServerProvider('http://localhost:9000');
+];
+const dataProvider = jsonServerProvider(process.env.REACT_APP_API_URL);
 const App = () => (
   <Admin
     appLayout={CustomLayout}
