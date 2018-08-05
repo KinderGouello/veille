@@ -22,7 +22,7 @@ export default (state = initialState, action) => {
     case DIGEST_ADD_FETCH_SUCCESS:
       return {
         ...state,
-        ...action.data,
+        ...action.payload,
         ...{ itemLoading: false },
       };
     case DIGEST_NEXT:

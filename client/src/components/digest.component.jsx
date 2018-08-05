@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
+import MuiButton from '@material-ui/core/Button';
 import { fetchItems, addItem, nextItem, prevItem } from '../actions/digest.actions';
 
 import { Loader } from 'semantic-ui-react';
@@ -38,6 +40,7 @@ class Digest extends Component {
     return (
       <div>
         <div>
+          <MuiButton><Link to="/">Retour à l'accueil</Link></MuiButton>
           <h1>Digest du {digest.date}</h1>
         </div>
         <div className="digest">
@@ -58,7 +61,7 @@ class Digest extends Component {
             ) : ( 
               <DigestCard
                 body={<Component item={currentItem} />}
-                  onClick={() => onAddItem(digest.id, currentItem._id)}
+                  onClick={() => onAddItem(digest._id, currentItem._id)}
                 isItem={true}
               />
             ))}
@@ -75,7 +78,6 @@ const mapStateToProps = state => ({
   isFirstItem: state.digest.currentItem === 0,
   isLastItem: (state.digest.items !== undefined) ? state.digest.currentItem === state.digest.items.length : false,
   currentItem: (state.digest.items) ? state.digest.items[state.digest.currentItem] : undefined,
-  // actionLoading: state.digest.actionLoading,
 });
 const mapDispatchToProps = dispatch => bindActionCreators({
   onAddItem: addItem,
