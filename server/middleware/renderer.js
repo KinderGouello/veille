@@ -3,8 +3,8 @@ import ReactDOMServer from 'react-dom/server';
 
 import App from '../../src/App';
 
-const path = require('path');
-const fs = require('fs');
+import path from 'path';
+import fs from 'fs';
 
 export default (req, res, next) => {
   const filePath = path.resolve(__dirname, '..', '..', 'build', 'index.html');

@@ -1,10 +1,11 @@
 FROM node:8-alpine
 
-RUN useradd --user-group --create-home --shell /bin/false nodejs
-RUN npm update && npm install -g nodemon create-react-app
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+
+USER node
+RUN npm update && npm install -g nodemon create-react-app yarn
 
 ENV NODE_ENV=production
-ENV HOME=/home/nodejs
+ENV HOME=/home/node
 
-USER nodejs
 WORKDIR $HOME/app
