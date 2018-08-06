@@ -4,7 +4,7 @@ import { all, takeEvery, call, put } from "redux-saga/effects";
 
 function* fetchItems() {
   try {
-    const response = yield call(axios.get, 'http://localhost:9000/digest');
+    const response = yield call(axios.get, `${process.env.REACT_APP_API_URL}/digest`);
     
     yield put({ type: "DIGEST_FETCH_SUCCESS", payload: response.data });
   } catch (e) {
@@ -15,7 +15,7 @@ function* fetchItems() {
 
 function* addItem(actions) {
   try {
-    const response = yield call(axios.post, `http://localhost:9000/digest/${actions.digestId}/add/${actions.itemId}`);
+    const response = yield call(axios.post, `${process.env.REACT_APP_API_URL}/digest/${actions.digestId}/add/${actions.itemId}`);
 
     yield put({ type: "DIGEST_ADD_FETCH_SUCCESS", payload: response.data });
   } catch (e) {
