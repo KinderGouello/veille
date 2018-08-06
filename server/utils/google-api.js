@@ -1,11 +1,15 @@
 require('dotenv').config();
 const { google } = require('googleapis');
 const { promisify } = require('util');
-const token = require('../google-credentials.json');
 
 const getClient = () => {
   const oAuth2Client = new google.auth.OAuth2(process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CLIENT_SECRET, process.env.GOOGLE_REDIRECT_URI);
-  oAuth2Client.setCredentials(token);
+  oAuth2Client.setCredentials({
+    "access_token": process.env.GOOGLE_ACCESS_TOKEN,
+    "token_type": "Bearer",
+    "refresh_token": process.env.GOOGLE_REFRESH_TOKEN,
+    "expiry_date": 1530140497541
+  });
 
   return google.gmail({ version: 'v1', auth: oAuth2Client });
 };

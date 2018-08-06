@@ -1,6 +1,6 @@
 CMD_DOCKER_COMPOSE=docker-compose -p veille
 
-.PHOHY: build start down node run-client run-server deploy-app
+.PHOHY: build start down node run-client run-server deploy-client deploy-server deploy-app
 
 all:
 
@@ -21,6 +21,12 @@ run-client:
 
 run-server: start
 	$(CMD_DOCKER_COMPOSE) exec server npm start
+
+deploy-client:
+	$(shell git push heroku-client master --force-with-lease)
+
+deploy-server:
+	$(shell git push heroku-server master --force-with-lease)
 
 deploy-app:
 	$(shell git push heroku-server master --force-with-lease)
