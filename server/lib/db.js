@@ -11,7 +11,7 @@ const config = {
 
 module.exports = {
   connect: () => {
-    mongoose.connect(`mongodb://${config.user}:${config.password}@${config.host}:${config.port}/${config.name}`)
+    mongoose.connect(`mongodb://${config.user}:${config.password}@${config.host}:${config.port}/${config.name}`, { useNewUrlParser: true })
       .then(() => {
         console.log('connected to database');
       });
